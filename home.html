@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Basic angular js</title>
+    <!--this line brings in angular lib files from CDN-->
+    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+</head>
+<body>
+    <!--ng app directive will hook the block and this is where angular js starts loading in-->
+    <!-- ng-controller is a directive, and controller in angular js are javascript objects that contains
+      1. attributes/properties
+      2. functions
+      -->
+    <div ng-app = "mainApp" ng-controller = "studentController">
+        Enter first name: <input type = "text" ng-model = "student.firstName"><br>
+        <br>
+        Enter last name: <input type = "text" ng-model = "student.lastName"><br>
+        <br>
+        You are entering: {{student.fullName()}}
+    </div>
+
+    <!--each controller accepts $scope as a parameter, this scope refers to the application/module that we need to handle-->
+    <script>
+        //this will load up the angular module
+        var mainApp = angular.module("mainApp", []);
+
+        //define our studentController function
+        mainApp.controller('studentController', function($scope){
+            $scope.student = {
+                firstName : "Ranjith Kumar",
+                lastName : "Ravikumar",
+
+                //to demonstrate that our scope object can contain functions too
+                fullName : function(){
+                    var studentObject;
+                    studentObject = $scope.student;
+                    return "Mr. "+studentObject.firstName +" "+ studentObject.lastName;
+                }
+            };
+        });
+    </script>
+</body>
+</html>
