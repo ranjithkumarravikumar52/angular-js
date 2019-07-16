@@ -24,6 +24,30 @@
             <input type="checkbox" name="subject" ng-model="selectedSubject" ng-value="subject" ng-change="selectSubjectFunction(subject);"> {{subject}}<br>
         </div>
 
+        <!--ng-disabled directive-->
+        <input type = "checkbox" ng-model = "enableDisableButton1">Disable Button
+        <button ng-disabled = "enableDisableButton1">Click Me</button>
+
+        <br>
+
+        <!--ng-show directive-->
+        <input type="checkbox" ng-model="showDirectiveExample">Show Button
+        <button ng-show="showDirectiveExample">Click me</button>
+
+        <br>
+
+        <!--ng-hide directive-->
+        <input type = "checkbox" ng-model = "showHide2">Hide Button
+        <button ng-hide = "showHide2">Click Me!</button>
+
+        <br>
+
+        <!--ng-click directive-->
+        <p>Total click: {{ clickCounter }}</p>
+        <button ng-click = "clickCounter = clickCounter + 1">Click Me!</button>
+
+        <br>
+
         <h2>Output</h2>
         Your name in lowercase: {{student.fullName() | lowercase}}<br>
         Your name in uppercase: {{student.fullName() | uppercase}}<br>
@@ -34,7 +58,7 @@
         </li>
     </div>
 
-    <!--each controller accepts $scope as a parameter, this scope refers to the application/module that we need to handle-->
+    <!--each controller accepts $scope as a parameter, this scope  refers to the application/module that we need to handle-->
     <script>
         //this will load up the angular module
         var mainApp = angular.module("mainApp", []);
