@@ -31,43 +31,51 @@
       2. functions
       -->
     <div ng-app = "mainApp" ng-controller = "studentController">
-        <table>
-            <tr>
-                <td>First name: <input type = "text" ng-model = "student.firstName"></td>
-                <td>{{student.firstName}}</td>
-            </tr>
-            <tr>
-                <td>Last name: <input type = "text" ng-model = "student.lastName"></td>
-                <td>{{student.lastName}}</td>
-            </tr>
-            <tr>
-                <td>Fees: <input type="number" ng-model="student.fees"></td>
-                <td>{{student.fees | currency}}</td>
-            </tr>
-            <tr><!--subjects-->
-                <td>
-                    <div ng-repeat="subject in student.subjects">
-                        <input type="checkbox" name="subject"
-                               ng-model="selectedSubject" ng-value="subject" ng-change="selectSubjectFunction(subject);"> {{subject}}
-                    </div>
-                </td>
-                <td>
-                    <li ng-repeat = "subject in resultArray">
-                        {{subject}}
-                    </li>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <!--reset button-->
-                    <button ng-click = "reset()">Reset to Default values</button>
-                </td>
-                <td>
-                    <input type="submit" value="submit">
-                </td>
-            </tr>
-
-        </table>
+        <form name="studentForm" novalidate>
+            <table>
+                <tr>
+                    <td>First name: <input type = "text" name="firstname" ng-model = "student.firstName"></td>
+                    <td>
+                        {{student.firstName}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Last name: <input type = "text" ng-model = "student.lastName"></td>
+                    <td>{{student.lastName}}</td>
+                </tr>
+                <tr>
+                    <td>Fees: <input type="number" name = "fees" ng-model="student.fees"></td>
+                    <td>{{student.fees | currency}}</td>
+                    <span style="color:red" ng-show="studentForm.fees.$dirty">
+                        <span ng-show="studentForm.fees.$dirty">Original fees has been changed</span>
+                    </span>
+                </span>
+                </tr>
+                <tr><!--subjects-->
+                    <td>
+                        <div ng-repeat="subject in student.subjects">
+                            <input type="checkbox" name="subject"
+                                   ng-model="selectedSubject" ng-value="subject" ng-change="selectSubjectFunction(subject);"> {{subject}}
+                        </div>
+                    </td>
+                    <td>
+                        <li ng-repeat = "subject in resultArray">
+                            {{subject}}
+                        </li>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <!--reset button-->
+                        <button ng-click = "reset()">Reset to Default values</button>
+                    </td>
+                    <td>
+                        <button ng-click="submit()"
+                                ng-disabled="studentForm.fees.$dirty">Submit</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
 
 
 
