@@ -24,13 +24,13 @@
     </style>
 
 </head>
-<body>
+<body ng-app = "mainApp">
     <!--ng app directive will hook the block and this is where angular js starts loading in-->
     <!-- ng-controller is a directive, and controller in angular js are javascript objects that contains
       1. attributes/properties
       2. functions
       -->
-    <div ng-app = "mainApp" ng-controller = "studentController">
+    <div  ng-controller = "studentController">
         <form name="studentForm" novalidate>
             <table>
                 <tr>
@@ -78,29 +78,10 @@
         </form>
 
 
+        <div ng-include="'directives.html'">
 
-        <!--<h5>ng directives</h5>-->
-        <!--&lt;!&ndash;ng-disabled directive&ndash;&gt;-->
-        <!--<input type = "checkbox" ng-model = "enableDisableButton1">Disable Button-->
-        <!--<button ng-disabled = "enableDisableButton1">Click Me</button>-->
+        </div>
 
-        <!--<br>-->
-
-        <!--&lt;!&ndash;ng-show directive&ndash;&gt;-->
-        <!--<input type="checkbox" ng-model="showDirectiveExample">Show Button-->
-        <!--<button ng-show="showDirectiveExample">Click me</button>-->
-
-        <!--<br>-->
-
-        <!--&lt;!&ndash;ng-hide directive&ndash;&gt;-->
-        <!--<input type = "checkbox" ng-model = "showHide2">Hide Button-->
-        <!--<button ng-hide = "showHide2">Click Me!</button>-->
-
-        <!--<br>-->
-
-        <!--&lt;!&ndash;ng-click directive&ndash;&gt;-->
-        <!--<button ng-click = "clickCounter = clickCounter + 1">Click Me!</button>-->
-        <!--<span>Total click: {{ clickCounter }}</span>-->
     </div>
 </body>
 </html>
