@@ -6,6 +6,23 @@
     <!--this line brings in angular lib files from CDN-->
     <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
     <script src = "studentController.js"></script>
+
+    <style>
+        table, th , td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+
+        table tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+    </style>
+
 </head>
 <body>
     <!--ng app directive will hook the block and this is where angular js starts loading in-->
@@ -14,53 +31,68 @@
       2. functions
       -->
     <div ng-app = "mainApp" ng-controller = "studentController">
-        Enter first name: <input type = "text" ng-model = "student.firstName"><br>
-        <br>
-        Enter last name: <input type = "text" ng-model = "student.lastName"><br>
-        <br>
-        Enter fees: <input type="number" ng-model="student.fees"><br><br>
+        <table>
+            <tr>
+                <td>First name: <input type = "text" ng-model = "student.firstName"></td>
+                <td>{{student.firstName}}</td>
+            </tr>
+            <tr>
+                <td>Last name: <input type = "text" ng-model = "student.lastName"></td>
+                <td>{{student.lastName}}</td>
+            </tr>
+            <tr>
+                <td>Fees: <input type="number" ng-model="student.fees"></td>
+                <td>{{student.fees | currency}}</td>
+            </tr>
+            <tr><!--subjects-->
+                <td>
+                    <div ng-repeat="subject in student.subjects">
+                        <input type="checkbox" name="subject"
+                               ng-model="selectedSubject" ng-value="subject" ng-change="selectSubjectFunction(subject);"> {{subject}}
+                    </div>
+                </td>
+                <td>
+                    <li ng-repeat = "subject in resultArray">
+                        {{subject}}
+                    </li>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <!--reset button-->
+                    <button ng-click = "reset()">Reset to Default values</button>
+                </td>
+                <td>
+                    <input type="submit" value="submit">
+                </td>
+            </tr>
 
-        <!--subjects-->
-        <div ng-repeat="subject in student.subjects">
-            <input type="checkbox" name="subject" ng-model="selectedSubject" ng-value="subject" ng-change="selectSubjectFunction(subject);"> {{subject}}<br>
-        </div>
+        </table>
 
-        <h5>ng directives</h5>
-        <!--ng-disabled directive-->
-        <input type = "checkbox" ng-model = "enableDisableButton1">Disable Button
-        <button ng-disabled = "enableDisableButton1">Click Me</button>
 
-        <br>
 
-        <!--ng-show directive-->
-        <input type="checkbox" ng-model="showDirectiveExample">Show Button
-        <button ng-show="showDirectiveExample">Click me</button>
+        <!--<h5>ng directives</h5>-->
+        <!--&lt;!&ndash;ng-disabled directive&ndash;&gt;-->
+        <!--<input type = "checkbox" ng-model = "enableDisableButton1">Disable Button-->
+        <!--<button ng-disabled = "enableDisableButton1">Click Me</button>-->
 
-        <br>
+        <!--<br>-->
 
-        <!--ng-hide directive-->
-        <input type = "checkbox" ng-model = "showHide2">Hide Button
-        <button ng-hide = "showHide2">Click Me!</button>
+        <!--&lt;!&ndash;ng-show directive&ndash;&gt;-->
+        <!--<input type="checkbox" ng-model="showDirectiveExample">Show Button-->
+        <!--<button ng-show="showDirectiveExample">Click me</button>-->
 
-        <br>
+        <!--<br>-->
 
-        <!--ng-click directive-->
-        <button ng-click = "clickCounter = clickCounter + 1">Click Me!</button>
-        <span>Total click: {{ clickCounter }}</span>
+        <!--&lt;!&ndash;ng-hide directive&ndash;&gt;-->
+        <!--<input type = "checkbox" ng-model = "showHide2">Hide Button-->
+        <!--<button ng-hide = "showHide2">Click Me!</button>-->
 
-        <br>
+        <!--<br>-->
 
-        <!--reset button-->
-        <button ng-click = "reset()">Reset to Default values</button>
-
-        <h2>Output</h2>
-        Your name in lowercase: {{student.fullName() | lowercase}}<br>
-        Your name in uppercase: {{student.fullName() | uppercase}}<br>
-        Your fees: {{student.fees | currency}}<br>
-        Your subjects: <br>
-        <li ng-repeat = "subject in resultArray">
-            {{subject}}
-        </li>
+        <!--&lt;!&ndash;ng-click directive&ndash;&gt;-->
+        <!--<button ng-click = "clickCounter = clickCounter + 1">Click Me!</button>-->
+        <!--<span>Total click: {{ clickCounter }}</span>-->
     </div>
 </body>
 </html>
