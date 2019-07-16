@@ -31,6 +31,9 @@ mainApp.controller('studentController', function($scope){
     $scope.selectSubjectFunction = function (val) {
         //if val not present in result, then add
         console.log(val);
+        if($scope.resultArray.includes("Sociology")){
+            $scope.resultArray = [];
+        }
         if(!$scope.resultArray.includes(val)){
             $scope.resultArray.push(val);
         }else{
@@ -40,4 +43,11 @@ mainApp.controller('studentController', function($scope){
             }
         }
     };
+
+    $scope.reset = function(){
+        $scope.student.firstName  = "John";
+        $scope.student.lastName  = "Doe";
+        $scope.student.fees = 100;
+        $scope.resultArray = ["Sociology"];
+    }
 });

@@ -45,10 +45,13 @@
         <br>
 
         <!--ng-click directive-->
-        <p>Total click: {{ clickCounter }}</p>
         <button ng-click = "clickCounter = clickCounter + 1">Click Me!</button>
+        <span>Total click: {{ clickCounter }}</span>
 
         <br>
+
+        <!--reset button-->
+        <button ng-click = "reset()">Reset to Default values</button>
 
         <h2>Output</h2>
         Your name in lowercase: {{student.fullName() | lowercase}}<br>
