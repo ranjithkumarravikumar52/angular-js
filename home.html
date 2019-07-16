@@ -17,8 +17,10 @@
         <br>
         Enter last name: <input type = "text" ng-model = "student.lastName"><br>
         <br>
+        Enter fees: <input type="number" ng-model="student.fees"><br><br>
         Your name in lowercase: {{student.fullName() | lowercase}}<br>
         Your name in uppercase: {{student.fullName() | uppercase}}<br>
+        Your fees: {{student.fees | currency}}<br>
     </div>
 
     <!--each controller accepts $scope as a parameter, this scope refers to the application/module that we need to handle-->
