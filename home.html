@@ -5,6 +5,7 @@
     <title>Basic angular js</title>
     <!--this line brings in angular lib files from CDN-->
     <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src = "studentController.js"></script>
 </head>
 <body>
     <!--ng app directive will hook the block and this is where angular js starts loading in-->
@@ -24,6 +25,7 @@
             <input type="checkbox" name="subject" ng-model="selectedSubject" ng-value="subject" ng-change="selectSubjectFunction(subject);"> {{subject}}<br>
         </div>
 
+        <h5>ng directives</h5>
         <!--ng-disabled directive-->
         <input type = "checkbox" ng-model = "enableDisableButton1">Disable Button
         <button ng-disabled = "enableDisableButton1">Click Me</button>
@@ -57,49 +59,5 @@
             {{subject}}
         </li>
     </div>
-
-    <!--each controller accepts $scope as a parameter, this scope  refers to the application/module that we need to handle-->
-    <script>
-        //this will load up the angular module
-        var mainApp = angular.module("mainApp", []);
-
-        //define our studentController function
-        mainApp.controller('studentController', function($scope){
-
-            $scope.student = {
-                firstName : "Ranjith Kumar",
-                lastName : "Ravikumar",
-
-                fees: 500, //default value can be overridden in the input field
-
-                //subjects is an array here
-                subjects:[
-                    "Maths", "Physics", "Chemistry"
-                ],
-
-                //to demonstrate that our scope object can contain functions too
-                fullName : function(){
-                    var studentObject;
-                    studentObject = $scope.student;
-                    return "Mr. "+studentObject.firstName +" "+ studentObject.lastName;
-                }
-            };
-
-            $scope.resultArray = [];
-
-            $scope.selectSubjectFunction = function (val) {
-                //if val not present in result, then add
-                console.log(val);
-                if(!$scope.resultArray.includes(val)){
-                    $scope.resultArray.push(val);
-                }else{
-                   var index = $scope.resultArray.indexOf(val);
-                    if(index > -1){
-                        $scope.resultArray.splice(index, 1);
-                    }
-                }
-            };
-        });
-    </script>
 </body>
 </html>
