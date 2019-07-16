@@ -7,6 +7,8 @@ var mainApp = angular.module("mainApp", []);
 //define our studentController function
 mainApp.controller('studentController', function($scope){
 
+    console.log("Inside function $scope");
+
     $scope.student = {
         firstName : "Ranjith Kumar",
         lastName : "Ravikumar",
@@ -49,5 +51,13 @@ mainApp.controller('studentController', function($scope){
         $scope.student.lastName  = "Doe";
         $scope.student.fees = 100;
         $scope.resultArray = ["Sociology"];
-    }
+    };
 });
+
+function studentController($scope,$http) {
+    var url = "/data.txt";
+
+    $http.get(url).then( function(response) {
+        $scope.students = response.data;
+    });
+}
