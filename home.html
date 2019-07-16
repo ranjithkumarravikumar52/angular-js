@@ -5,40 +5,83 @@
     <title>Basic angular js</title>
     <!--this line brings in angular lib files from CDN-->
     <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src = "studentController.js"></script>
+
+    <style>
+        table, th , td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+
+        table tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+    </style>
+
 </head>
-<body>
+<body ng-app = "mainApp">
     <!--ng app directive will hook the block and this is where angular js starts loading in-->
     <!-- ng-controller is a directive, and controller in angular js are javascript objects that contains
       1. attributes/properties
       2. functions
       -->
-    <div ng-app = "mainApp" ng-controller = "studentController">
-        Enter first name: <input type = "text" ng-model = "student.firstName"><br>
-        <br>
-        Enter last name: <input type = "text" ng-model = "student.lastName"><br>
-        <br>
-        You are entering: {{student.fullName()}}
+    <div  ng-controller = "studentController">
+        <form name="studentForm" novalidate>
+            <table>
+                <tr>
+                    <td>First name: <input type = "text" name="firstname" ng-model = "student.firstName"></td>
+                    <td>
+                        {{student.firstName}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Last name: <input type = "text" ng-model = "student.lastName"></td>
+                    <td>{{student.lastName}}</td>
+                </tr>
+                <tr>
+                    <td>Fees: <input type="number" name = "fees" ng-model="student.fees"></td>
+                    <td>{{student.fees | currency}}</td>
+                    <span style="color:red" ng-show="studentForm.fees.$dirty">
+                        <span ng-show="studentForm.fees.$dirty">Original fees has been changed</span>
+                    </span>
+                </span>
+                </tr>
+                <tr><!--subjects-->
+                    <td>
+                        <div ng-repeat="subject in student.subjects">
+                            <input type="checkbox" name="subject"
+                                   ng-model="selectedSubject" ng-value="subject" ng-change="selectSubjectFunction(subject);"> {{subject}}
+                        </div>
+                    </td>
+                    <td>
+                        <li ng-repeat = "subject in resultArray">
+                            {{subject}}
+                        </li>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <!--reset button-->
+                        <button ng-click = "reset()">Reset to Default values</button>
+                    </td>
+                    <td>
+                        <button ng-click="submit()"
+                                ng-disabled="studentForm.fees.$dirty">Submit</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+
+        <div ng-include="'directives.html'">
+
+        </div>
+
     </div>
-
-    <!--each controller accepts $scope as a parameter, this scope refers to the application/module that we need to handle-->
-    <script>
-        //this will load up the angular module
-        var mainApp = angular.module("mainApp", []);
-
-        //define our studentController function
-        mainApp.controller('studentController', function($scope){
-            $scope.student = {
-                firstName : "Ranjith Kumar",
-                lastName : "Ravikumar",
-
-                //to demonstrate that our scope object can contain functions too
-                fullName : function(){
-                    var studentObject;
-                    studentObject = $scope.student;
-                    return "Mr. "+studentObject.firstName +" "+ studentObject.lastName;
-                }
-            };
-        });
-    </script>
 </body>
 </html>

@@ -1,0 +1,22 @@
+<h5>ng directives</h5>
+<!--ng-disabled directive-->
+<input type = "checkbox" ng-model = "enableDisableButton1">Disable Button
+<button ng-disabled = "enableDisableButton1">Click Me</button>
+
+<br>
+
+<!--ng-show directive-->
+<input type="checkbox" ng-model="showDirectiveExample">Show Button
+<button ng-show="showDirectiveExample">Click me</button>
+
+<br>
+
+<!--ng-hide directive-->
+<input type = "checkbox" ng-model = "showHide2">Hide Button
+<button ng-hide = "showHide2">Click Me!</button>
+
+<br>
+
+<!--ng-click directive-->
+<button ng-click = "clickCounter = clickCounter + 1">Click Me!</button>
+<span>Total click: {{ clickCounter }}</span>
