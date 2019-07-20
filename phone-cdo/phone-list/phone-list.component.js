@@ -1,11 +1,6 @@
 angular.module('phoneCatApp')
 .component('phoneList', {
-    template  :
-        '<ul>' +
-            '<li ng-repeat = "phone in $ctrl.phones">' +
-                '<p>{{phone.name}}: {{phone.price}}</p>' +
-            '</li>'+
-        '</ul>',
+    templateUrl  : 'phone-list/phone-list.template.html',
     controller : function phoneListController(){
         this.phones = [
             {
