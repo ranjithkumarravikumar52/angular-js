@@ -1,12 +1,36 @@
 <div class="container-fluid">
     <div class="row">
+        <div class="col-md-2">
+            <!--Sidebar content-->
+            <p>
+                Search:
+                <input ng-model="$ctrl.query" />
+            </p>
+
+            <p>
+                Sort by:
+                <select ng-model="$ctrl.orderProp">
+                    <option value="name">Alphabetical</option>
+                    <option value="age">Newest</option>
+                    <option value="-age">Oldest</option>
+                </select>
+            </p>
+
+        </div>
         <div class="col-md-10">
             <!--Body content-->
 
+            <!--In this code,
+            the data that a user types into the input box (bound to $ctrl.query) is immediately available as a filter input
+             in the list repeater (phone in $ctrl.phones | filter:$ctrl.query).
+              When changes to the data model cause the repeater's input to change,
+               the repeater efficiently updates the DOM to reflect the current state of the model.-->
+            <p>Order by : {{$ctrl.orderProp}}</p>
             <ul class="phones">
-                <li ng-repeat="phone in $ctrl.phones">
+                <li ng-repeat="phone in $ctrl.phones | filter:$ctrl.query | orderBy:$ctrl.orderProp">
                     <span>{{phone.name}}</span>
-                    <p>{{phone.price}}</p>
+                    <p>{{phone.snippet}}</p>
+                    <p>{{phone.age}}</p>
                 </li>
             </ul>
 
